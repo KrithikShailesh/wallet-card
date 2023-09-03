@@ -5,7 +5,7 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
-import { Animated } from "react-native";
+import { Animated, StyleSheet, ActivityIndicator, View } from "react-native";
 import { Easing } from "react-native-reanimated";
 import Carousel from "react-native-snap-carousel";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
@@ -24,14 +24,14 @@ export default function RootScreen() {
   const [currentIndex, setCurrentIndex] = useState(null);
 
   const bottomSheetModalRef = useRef(null);
-  const y = useRef(new Animated.Value(0)).current;
+  const yAxis = useRef(new Animated.Value(0)).current;
   const carouselRef = useRef(null);
 
-  // variables
   const snapPoints = useMemo(() => ["25%", "50%"], []);
 
+  //All Carousel and Scroll related animation and functions
   const handleCardPushUpAnimation = () => {
-    Animated.timing(y, {
+    Animated.timing(yAxis, {
       toValue: -250,
       duration: 800,
       easing: Easing.ease,
@@ -40,7 +40,7 @@ export default function RootScreen() {
   };
 
   const handleCardPushDownAnimation = () => {
-    Animated.timing(y, {
+    Animated.timing(yAxis, {
       toValue: 0,
       duration: 800,
       easing: Easing.ease,
@@ -48,7 +48,6 @@ export default function RootScreen() {
     }).start();
   };
 
-  // callbacks
   const handlePresentModalPress = useCallback(() => {
     bottomSheetModalRef.current?.present();
     handleCardPushUpAnimation();
@@ -60,6 +59,16 @@ export default function RootScreen() {
     }
   }, []);
 
+  const onTapCard = async () => {
+    setIsModalVisible(true);
+    handlePresentModalPress();
+  };
+
+  const onCarouselScroll = async (slideIndex) => {
+    setCurrentIndex(slideIndex);
+  };
+
+  //onMounting Call the api to get the data to populate the screen
   useEffect(() => {
     getAllCards();
   }, []);
@@ -70,66 +79,68 @@ export default function RootScreen() {
     setCurrentIndex(cards.length - 1);
   };
 
-  const onTapCard = async () => {
-    setIsModalVisible(true);
-    handlePresentModalPress();
-  };
-
-  const onCarouselScroll = async (slideIndex) => {
-    setCurrentIndex(slideIndex);
-  };
-
   return (
-    <GestureHandlerRootView style={{ flex: 1 }}>
+    <GestureHandlerRootView style={styles.container}>
       <BottomSheetModalProvider>
         <Animated.View
           style={[
             { flex: 1, maxHeight: hp("100%") },
-            isModalVisible && { transform: [{ translateY: y }] },
+            isModalVisible && { transform: [{ translateY: yAxis }] },
           ]}
         >
-          {reversedData && (
-            <Carousel
-              ref={carouselRef}
-              data={reversedData}
-              vertical
-              layout="stack"
-              layoutCardOffset={hp("10%")}
-              firstItem={reversedData.length - 1}
-              renderItem={({ item, index }) => (
-                <Card
-                  name={item.name}
-                  id={item.id}
-                  colors={item.colors}
-                  cardType={item.cardType}
-                  currencyType={item.currencyType}
-                  totalBalance={item.totalBalance}
-                  cardNumber={item.cardNumber}
-                  onTapCard={onTapCard}
-                />
-              )}
-              onBeforeSnapToItem={(slideIndex) => onCarouselScroll(slideIndex)}
-              inactiveSlideOpacity={1}
-              itemHeight={hp("30%")}
-              lockScrollWhileSnapping={true}
-              sliderHeight={hp("150%")}
-              decelerationRate={"normal"}
-              disableIntervalMomentum={true}
-            />
-          )}
-        </Animated.View>
-        {reversedData && currentIndex && (
-          <Modal
-            handlePresentModalPress={handlePresentModalPress}
-            bottomSheetModalRef={bottomSheetModalRef}
-            snapPoints={snapPoints}
-            handleSheetChanges={handleSheetChanges}
-            carouselRef={carouselRef}
-            currentIndex={currentIndex}
+          <Carousel
+            ref={carouselRef}
             data={reversedData}
+            vertical
+            layout="stack"
+            layoutCardOffset={hp("10%")}
+            firstItem={reversedData.length - 1}
+            renderItem={({ item, index }) => (
+              <Card
+                name={item.name}
+                id={item.id}
+                colors={item.colors}
+                cardType={item.cardType}
+                currencyType={item.currencyType}
+                totalBalance={item.totalBalance}
+                cardNumber={item.cardNumber}
+                onTapCard={onTapCard}
+              />
+            )}
+            onBeforeSnapToItem={(slideIndex) => onCarouselScroll(slideIndex)}
+            inactiveSlideOpacity={1}
+            itemHeight={hp("30%")}
+            lockScrollWhileSnapping={true}
+            sliderHeight={hp("150%")}
+            decelerationRate={"normal"}
+            disableIntervalMomentum={true}
           />
+        </Animated.View>
+
+        <Modal
+          handlePresentModalPress={handlePresentModalPress}
+          bottomSheetModalRef={bottomSheetModalRef}
+          snapPoints={snapPoints}
+          handleSheetChanges={handleSheetChanges}
+          carouselRef={carouselRef}
+          currentIndex={currentIndex}
+          data={reversedData}
+        />
+
+        {!reversedData && !currentIndex && (
+          <View style={{ flex: 1, justifyContent: "center" }}>
+            <ActivityIndicator size={"large"} color={"#405755"} />
+          </View>
         )}
       </BottomSheetModalProvider>
     </GestureHandlerRootView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#B3C7C5",
+    justifyContent: "center",
+  },
+});
