@@ -5,10 +5,9 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
-
+import Text from "../Text";
 import { PaymentIcon } from "react-native-payment-icons";
 
-import Text from "../Text";
 import { getCurrencySymbol } from "../../utils";
 
 export default function Card(props) {
@@ -22,6 +21,18 @@ export default function Card(props) {
     cardNumber,
     onTapCard,
   } = props;
+
+  if (
+    !colors &&
+    !name &&
+    !cardType &&
+    !cardNumber &&
+    !totalBalance &&
+    !currencyType
+  ) {
+    return;
+  }
+
   return (
     <Pressable style={styles.card} onPress={onTapCard}>
       <LinearGradient

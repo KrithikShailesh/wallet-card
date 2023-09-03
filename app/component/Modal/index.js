@@ -10,9 +10,7 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { LinearGradient } from "expo-linear-gradient";
-
 import Text from "../../component/Text";
-
 import Octicons from "@expo/vector-icons/Octicons";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
@@ -45,6 +43,11 @@ export default function Index(props) {
     });
   };
 
+  //if no data or current index return nothing
+  if (!data && !currentIndex) {
+    return;
+  }
+
   return (
     <BottomSheetModal
       ref={bottomSheetModalRef}
@@ -62,7 +65,7 @@ export default function Index(props) {
       }}
     >
       <LinearGradient
-        colors={data[currentIndex].colors}
+        colors={data[currentIndex].accentColors}
         start={[0.1, 0.1]}
         style={styles.gradient}
       >
