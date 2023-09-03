@@ -1,0 +1,141 @@
+# OSX
+#
+.DS_Store
+
+# Xcode
+#
+build/
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata
+*.xccheckout
+*.moved-aside
+DerivedData
+*.hmap
+*.ipa
+*.xcuserstate
+project.xcworkspace
+
+# Android/IntelliJ
+#
+build/
+.idea
+.gradle
+local.properties
+*.iml
+
+android/.gradle/
+.gradle
+
+# node.js
+#
+node_modules/
+package-lock.json # include if you are using npm - don't use both yarn and npm
+npm-debug.log
+yarn-error.log
+yarn.lock # include if you are using yarn - don't use both npm and yarn
+
+# BUCK
+buck-out/
+\.buckd/
+*.keystore
+
+# Fastlane
+#
+# It is recommended to not store the screenshots in the git repo. Instead, use Fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/
+
+*/fastlane/report.xml
+*/fastlane/Preview.html
+*/fastlane/screenshots
+
+# Bundle artifact
+*.jsbundle
+android/.gradle/6.2/executionHistory/executionHistory.lock
+android/.gradle/6.2/fileHashes/fileHashes.bin
+android/.gradle/6.2/fileHashes/fileHashes.lock
+android/.gradle/6.2/fileHashes/resourceHashesCache.bin
+android/.gradle/6.2/javaCompile/jarAnalysis.bin
+android/.gradle/6.2/javaCompile/javaCompile.lock
+android/.gradle/6.2/javaCompile/taskHistory.bin
+android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+android/.gradle/buildOutputCleanup/outputFiles.bin
+android/.gradle/checksums/checksums.lock
+android/.gradle/checksums/md5-checksums.bin
+android/.gradle/checksums/sha1-checksums.bin
+android/.gradle/6.2/executionHistory/executionHistory.bin
+*.bin
+android/.gradle/6.2/executionHistory/executionHistory.bin
+android/.gradle/6.2/executionHistory/executionHistory.lock
+android/.gradle/buildOutputCleanup/outputFiles.bin
+android/.gradle/6.2/executionHistory/executionHistory.bin
+android/.gradle/6.2/executionHistory/executionHistory.bin
+android/.gradle/6.2/javaCompile/taskHistory.bin
+*.bin
+android/.gradle/6.2/javaCompile/jarAnalysis.bin
+android/.gradle/6.2/javaCompile/javaCompile.lock
+android/.gradle/6.2/javaCompile/taskHistory.bin
+android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+android/.gradle/buildOutputCleanup/outputFiles.bin
+android/.gradle/checksums/checksums.lock
+android/.gradle/checksums/sha1-checksums.bin
+android/local.properties
+android/local.properties
+android/.gradle/6.2/executionHistory/executionHistory.bin
+android/.gradle/6.2/executionHistory/executionHistory.lock
+android/.gradle/6.2/fileHashes/fileHashes.bin
+android/.gradle/6.2/fileHashes/fileHashes.lock
+android/.gradle/6.2/fileHashes/resourceHashesCache.bin
+android/.gradle/6.2/javaCompile/jarAnalysis.bin
+android/.gradle/6.2/javaCompile/javaCompile.lock
+android/.gradle/6.2/javaCompile/taskHistory.bin
+android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+android/.gradle/checksums/checksums.lock
+android/.gradle/6.2/executionHistory/executionHistory.lock
+android/.gradle/6.2/fileContent/fileContent.lock
+android/.gradle/6.2/fileHashes/fileHashes.bin
+android/.gradle/6.2/fileHashes/fileHashes.lock
+android/.gradle/6.2/fileHashes/resourceHashesCache.bin
+android/.gradle/6.2/javaCompile/classAnalysis.bin
+android/.gradle/6.2/javaCompile/jarAnalysis.bin
+android/.gradle/6.2/javaCompile/javaCompile.lock
+android/.gradle/6.2/javaCompile/taskHistory.bin
+android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+android/.gradle/buildOutputCleanup/cache.properties
+android/.gradle/buildOutputCleanup/outputFiles.bin
+android/.gradle/checksums/checksums.lock
+android/.gradle/checksums/md5-checksums.bin
+android/.gradle/checksums/sha1-checksums.bin
+*.properties
+android/.gradle/6.2/executionHistory/executionHistory.bin
+android/.gradle/6.2/executionHistory/executionHistory.lock
+android/.gradle/6.2/fileContent/fileContent.lock
+android/.gradle/6.2/fileHashes/fileHashes.bin
+android/.gradle/6.2/fileHashes/fileHashes.lock
+android/.gradle/6.2/fileHashes/resourceHashesCache.bin
+android/.gradle/6.2/javaCompile/classAnalysis.bin
+android/.gradle/6.2/javaCompile/jarAnalysis.bin
+android/.gradle/6.2/javaCompile/javaCompile.lock
+android/.gradle/6.2/javaCompile/taskHistory.bin
+android/.gradle/buildOutputCleanup/buildOutputCleanup.lock
+android/.gradle/buildOutputCleanup/cache.properties
+android/.gradle/buildOutputCleanup/outputFiles.bin
+android/.gradle/checksums/checksums.lock
+android/.gradle/checksums/md5-checksums.bin
+android/.gradle/checksums/sha1-checksums.bin
+
+ios/Pods/
+
+.expo
+yarn.lock
+package-lock.json
+yarn.lock
+.expo/packager-info.json
