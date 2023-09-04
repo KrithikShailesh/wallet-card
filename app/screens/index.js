@@ -32,8 +32,8 @@ export default function RootScreen() {
   //All Carousel and Scroll related animation and functions
   const handleCardPushUpAnimation = () => {
     Animated.timing(yAxis, {
-      toValue: -250,
-      duration: 800,
+      toValue: -280,
+      duration: 700,
       easing: Easing.ease,
       useNativeDriver: true,
     }).start();
@@ -42,7 +42,7 @@ export default function RootScreen() {
   const handleCardPushDownAnimation = () => {
     Animated.timing(yAxis, {
       toValue: 0,
-      duration: 800,
+      duration: 600,
       easing: Easing.ease,
       useNativeDriver: true,
     }).start();
@@ -74,8 +74,9 @@ export default function RootScreen() {
   }, []);
 
   const getAllCards = async () => {
+    //We can design the api in such a way that we scroll halway through 5 card we get the next 10 cards and append to the list but the mockapi deos not allow indexing in free plan
     const cards = await makeGetAllCardsApiCall();
-    setReversedData(cards.reverse());
+    setReversedData(cards);
     setCurrentIndex(cards.length - 1);
   };
 
@@ -94,7 +95,7 @@ export default function RootScreen() {
             vertical
             layout="stack"
             layoutCardOffset={hp("10%")}
-            firstItem={reversedData.length - 1}
+            firstItem={reversedData && reversedData.length - 1}
             renderItem={({ item, index }) => (
               <Card
                 name={item.name}
@@ -116,16 +117,17 @@ export default function RootScreen() {
             disableIntervalMomentum={true}
           />
         </Animated.View>
-
-        <Modal
-          handlePresentModalPress={handlePresentModalPress}
-          bottomSheetModalRef={bottomSheetModalRef}
-          snapPoints={snapPoints}
-          handleSheetChanges={handleSheetChanges}
-          carouselRef={carouselRef}
-          currentIndex={currentIndex}
-          data={reversedData}
-        />
+        {reversedData && currentIndex && (
+          <Modal
+            handlePresentModalPress={handlePresentModalPress}
+            bottomSheetModalRef={bottomSheetModalRef}
+            snapPoints={snapPoints}
+            handleSheetChanges={handleSheetChanges}
+            carouselRef={carouselRef}
+            currentIndex={currentIndex}
+            data={reversedData}
+          />
+        )}
 
         {!reversedData && !currentIndex && (
           <View style={{ flex: 1, justifyContent: "center" }}>

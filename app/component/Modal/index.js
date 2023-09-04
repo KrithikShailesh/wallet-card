@@ -28,7 +28,7 @@ export default function Index(props) {
   } = props;
 
   const animationConfigs = useBottomSheetTimingConfigs({
-    duration: 800,
+    duration: 600,
     easing: Easing.ease,
   });
 
@@ -42,11 +42,6 @@ export default function Index(props) {
       );
     });
   };
-
-  //if no data or current index return nothing
-  if (!data && !currentIndex) {
-    return;
-  }
 
   return (
     <BottomSheetModal
