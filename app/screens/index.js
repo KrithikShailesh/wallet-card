@@ -7,7 +7,6 @@ import React, {
 } from "react";
 import { Animated, StyleSheet, ActivityIndicator, View } from "react-native";
 import { Easing } from "react-native-reanimated";
-import Carousel from "react-native-snap-carousel";
 import { BottomSheetModalProvider } from "@gorhom/bottom-sheet";
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import Card from "../component/Card";
@@ -17,6 +16,8 @@ import {
   heightPercentageToDP as hp,
 } from "react-native-responsive-screen";
 import { makeGetAllCardsApiCall } from "../api";
+
+import Carousel from "../component/Carousel";
 
 export default function RootScreen() {
   const [reversedData, setReversedData] = useState(null);
