@@ -118,7 +118,7 @@ export default function RootScreen() {
             disableIntervalMomentum={true}
           />
         </Animated.View>
-        {reversedData && currentIndex && (
+        {reversedData && currentIndex !== null && (
           <Modal
             handlePresentModalPress={handlePresentModalPress}
             bottomSheetModalRef={bottomSheetModalRef}
